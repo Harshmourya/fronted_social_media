@@ -1,12 +1,12 @@
-function Button({onclick, className, text, type }) {
+function Button({onclick, className, text, type ,children }) {
     return (
-        <>
         <button 
         type={type} 
         onClick={onclick} 
         className={className} 
-        >{text}</button>
-        </>
+        >
+            {children ? children :  text}
+        </button>
     );
 }
 

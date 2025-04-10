@@ -10,9 +10,15 @@ const UploadPost = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [image, setImage] = useState(null);
+  const [loading , setLoading] = useState(false);
 
   const handleFileChange = (e) => {
-    setImage(e.target.files[0]); // Store the selected image file
+    const file = e.target.files[0];
+    if (file.size > 5 * 1024 * 1024) {
+      showToastMessage("error", "File size should be less than 5MB.");
+      return;
+    }
+    setImage(file); // Store the selected image file
   };
 
   const handleSubmit = async (e) => {
@@ -23,15 +29,16 @@ const UploadPost = () => {
       return;
     }
 
+    setLoading(true)
+
     const formData = new FormData();
     formData.append("title", title);
     formData.append("Des", description);
     if (image) formData.append("photo", image);
 
     try {
-      const response = await createPost(formData); // API call without manual Content-Type header
-      // const response = await getPosts(); // API call without manual Content-Type header
-
+      const response = await createPost(formData); 
+      
       if (response.status === 201) {
         showToastMessage("success", "Post Created Successfully");
       } else {
@@ -44,10 +51,13 @@ const UploadPost = () => {
     } catch (err) {
       console.error("Error creating post:", err);
       showToastMessage("error", "Failed to create post. Please try again.");
+    }finally{
+      setLoading(false);
     }
   };
 
   const navigateHandle = () => navigate("/");
+
   return (
     <div className=" fixed inset-0 flex items-center justify-center bg-opacity-50 backdrop-blur-md z-50">
       {/* <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-100 via-purple-100 to-pink-100 px-4"> */}
@@ -55,11 +65,7 @@ const UploadPost = () => {
         <div className="flex flex-row items-center justify-between border-b pb-4 mb-6">
           <h2 className="text-2xl font-bold text-gray-800">Create New Post</h2>
 
-          <Button
-            className=" text-red-500 text-2xl hover:text-red-700 "
-            onclick={navigateHandle}
-            text="X"
-          />
+          <img  className=" text-red-500 text-2xl hover:text-red-700 " src="/cross.png" alt="" onClick={navigateHandle}/>
         </div>
 
         <form
@@ -117,11 +123,10 @@ const UploadPost = () => {
           <Button
             type="submit"
             className="w-full bg-violet-500 hover:bg-violet-600 text-white font-semibold py-2 rounded-xl transition shadow-sm"
-            text="Share Post"
+            text={loading ? "Posting..." : "Share Post"}
           />
         </form>
       </div>
-      {/* </div> */}
     </div>
   );
 };
