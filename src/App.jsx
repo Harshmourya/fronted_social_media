@@ -6,7 +6,7 @@ import {
   createRoutesFromElements,
 } from "react-router-dom";
 import Layout from "./Layout";
-import Login from "./pages/login";
+import Login from "./pages/Login";
 import Registration from "./pages/Registration";
 import LoginWithOTP from "./pages/LoginWithotp";
 import PrivateRoute from "./Routes/PrivateRoute";
