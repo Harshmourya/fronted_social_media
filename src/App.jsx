@@ -8,7 +8,7 @@ import {
 import Layout from "./Layout";
 import Login from "./pages/Login";
 import Registration from "./pages/Registration";
-import LoginWithOTP from "./pages/LoginWithotp";
+import LoginWithOTP from "../src/pages/LoginWithOTP";
 import PrivateRoute from "./Routes/PrivateRoute";
 import UploadPost from "./pages/UploadPost";
 import Home from "./pages/Home";
