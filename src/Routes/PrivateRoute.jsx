@@ -7,7 +7,7 @@ const PrivateRoute = () => {
   return token ?
   <>
     <Navbar />
-    <Outlet /> 
+    <Outlet />
   </>
    : <Navigate to="/login" replace />;
 };

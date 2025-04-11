@@ -6,13 +6,14 @@ import InputBox from "../components/InputBox";
 import Button from "../components/Button";
 
 const Login = () => {
+  const [loading , setLoading] = useState(false);
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
 
-  const inputCss =
-    "w-full p-3 bg-transparent border border-white/30 rounded-lg text-white placeholder-gray-300 focus:ring-2 focus:ring-teal-300 focus:outline-none hover:scale-105";
+  const inputCss ="w-full p-3 bg-transparent border border-white/30 rounded-lg text-white placeholder-gray-300 focus:ring-2 focus:ring-teal-300 focus:outline-none hover:scale-105";
+
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -25,15 +26,18 @@ const Login = () => {
       showTostMessage("error", "Please Fill out Fields"); // Show toast message
       return; // Stop function execution if fields are empty
     }
+
+    if(loading) return
+    setLoading(true);
     try {
-      console.log("Logging in with:", formData); // ✅ Debug formData
+      // console.log("Logging in with:", formData);
       const response = await loginUser(formData);
 
       const data = await response.data;
-      console.log("Server Response:", data); // ✅ Debug response
+      // console.log("Server Response:", data); 
 
       if (response.status === 200) {
-        localStorage.setItem("token", data.token); // ✅ Save token
+        localStorage.setItem("token", data.token); 
         // console.log(localStorage.getItem("token"));
 
         showTostMessage("success", "Login Successful");
@@ -42,8 +46,10 @@ const Login = () => {
         showTostMessage("error", "Username or Password not matching");
       }
     } catch (error) {
-      console.error("Login Error:", error);
+      // console.error("Login Error:", error);
       showTostMessage("error", "Something Went Wrong!");
+    }finally{
+      setLoading(false);
     }
   };
 
@@ -84,14 +90,20 @@ const Login = () => {
           </button> */}
           <Button
             type="submit"
+            loading={loading}
             className="w-full bg-blue-600 p-3 rounded-lg font-semibold shadow-lg hover:scale-105 transition-transform duration-300 ease-in-out"
-            text="Login"
+            text={loading? "Logging in" :"Login"}
           />
 
           <div className="w-full flex justify-between text-lg text-white">
+            <Link
+              to="/signup"
+              className="hover:underline hover:scale-110 focus:text-amber-300"
+            >
             <p className="hover:underline hover:scale-110">
               Create New Account
             </p>
+            </Link>
             <Link
               to="/signup"
               className="hover:underline hover:scale-110 focus:text-amber-300"

@@ -2,13 +2,22 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import showToastMessage from "../components/ToastMessage";
 import InputBox from "../components/InputBox";
+import Button from "../components/Button";
 
 const OTPVerification = () => {
+  const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState("");
   const [otp, setOtp] = useState("");
   const navigate = useNavigate();
 
   const handleVerify = async () => {
+    if(!email || !otp){
+      showToastMessage('error' , "Please Fill out Fields")
+    }
+    
+    if(loading) return
+    setLoading(true);
+
     try {
       const response = await fetch("http://localhost:3000/student/verify-otp", {
         method: "POST",
@@ -17,9 +26,6 @@ const OTPVerification = () => {
       });
 
       const data = await response.json();
-      if(!email || !otp){
-        showToastMessage('error' , "Please Fill out Fields")
-      }
       if (response.ok) {
         showToastMessage('success' , `${data.msg}`);
         navigate("/login");
@@ -28,6 +34,8 @@ const OTPVerification = () => {
       }
     } catch (error) {
       showToastMessage("error","❌ Server Error");
+    }finally{
+      setLoading(false);
     }
   };
 
@@ -54,13 +62,12 @@ const OTPVerification = () => {
           required
         />
 
-        <button
-          onClick={handleVerify}
+        <Button
+          loading={loading}
+          onclick={handleVerify}
           className="w-full bg-blue-500 text-white p-3 rounded-lg font-semibold shadow-lg hover:scale-105 transition-transform duration-300 ease-in-out"
-        >
-          Verify OTP
-        </button>
-
+          text={loading ? "Verifing otp": "Verify OTP"}
+        />
       </div>
     </div>
   );

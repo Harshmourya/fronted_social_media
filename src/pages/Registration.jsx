@@ -6,6 +6,7 @@ import InputBox from "../components/InputBox";
 import Button from "../components/Button";
 
 const Register = () => {
+  const [loading ,setLoading] = useState(false);
   const [formData, setFormData] = useState({
     firstname: "",
     lastname: "",
@@ -17,42 +18,54 @@ const Register = () => {
   });
 
   const navigate = useNavigate();
-const inputCss = "w-1/2 p-3 bg-transparent border border-white/30 rounded-lg text-white placeholder-gray-300 focus:ring-2 focus:ring-teal-300 focus:outline-none hover:scale-105"
+  const inputCss ="w-1/2 p-3 bg-transparent border border-white/30 rounded-lg text-white placeholder-gray-300 focus:ring-2 focus:ring-teal-300 focus:outline-none hover:scale-105";
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value.trim()});
+    setFormData({ ...formData, [e.target.name]: e.target.value.trim() });
   };
+
   const handleRegister = async (e) => {
     e.preventDefault();
-  
+
     const { firstname, lastname, username, email, password, phone } = formData;
-  
+
     // Validate required fields
     if (!firstname || !lastname || !username || !email || !password) {
       showToastMessage("error", "Please fill in all required fields.");
       return;
     }
-  
+
     // Validate phone number
     if (phone && !/^\d{10}$/.test(phone)) {
       showToastMessage("error", "Please enter a valid 10-digit phone number.");
       return;
     }
-  
+
+    if(loading) return
+    setLoading(true);
     try {
-      console.log("Submitting Data:", formData);
+      // console.log("Submitting Data:", formData);
       const response = await registerUser(formData);
-      
-      console.log("Server Response:", response); // Check response structure
-    
+
+      // console.log("Server Response:", response); // Check response structure
+
       if (response && response.status === 201) {
-        showToastMessage("success", "Registration successful! Now verify your OTP.");
+        showToastMessage(
+          "success",
+          "Registration successful! Now verify your OTP."
+        );
         navigate("/verify-otp", { state: { email: formData.email } });
       } else {
-        showToastMessage("error", response?.data?.message || "Registration failed!");
+        showToastMessage(
+          "error",
+          response?.data?.message || "Registration failed!"
+        );
       }
     } catch (error) {
       console.error("Registration Error:", error); // Debugging logs
-      showToastMessage("error", error.response?.data?.message || "Something Went Wrong");
+      showToastMessage(
+        "error",
+        error.response?.data?.message || "Something Went Wrong"
+      );
     }
   };
   return (
@@ -61,7 +74,9 @@ const inputCss = "w-1/2 p-3 bg-transparent border border-white/30 rounded-lg tex
         className="w-full max-w-lg bg-white/10 backdrop-blur-md rounded-lg shadow-lg shadow-blue-600 p-6 space-y-5 border border-white/20"
         onSubmit={handleRegister}
       >
-        <h2 className="text-2xl font-semibold text-white text-center">Register</h2>
+        <h2 className="text-2xl font-semibold text-white text-center">
+          Register
+        </h2>
 
         {/* First & Last Name */}
         <div className="flex gap-4">
@@ -133,21 +148,29 @@ const inputCss = "w-1/2 p-3 bg-transparent border border-white/30 rounded-lg tex
 
         {/* Register Button */}
         <Button
+          loading={loading}
           type="submit"
           className="w-full bg-blue-500 text-white p-3 rounded-lg font-semibold shadow-lg hover:scale-105 transition-transform duration-300 ease-in-out"
-         text =  "Register"
+          text="Register"
         />
 
         <div className="w-full flex justify-between text-lg text-white">
-        <p className="hover:underline hover:scale-110" >Have an account?</p>
-          <Link to="/login"
-          className="hover:underline hover:scale-110 focus:text-amber-300"
-          > Sign In</Link>
+          <Link
+            to="/login"
+            className="hover:underline hover:scale-110 focus:text-amber-300"
+          >
+          <p className="hover:underline hover:scale-110">Have an account?</p>
+          </Link>
+          <Link
+            to="/login"
+            className="hover:underline hover:scale-110 focus:text-amber-300"
+          >
+            Sign In
+          </Link>
         </div>
       </form>
     </div>
   );
 };
-
 
 export default Register;

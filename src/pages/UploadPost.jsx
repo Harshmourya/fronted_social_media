@@ -21,14 +21,26 @@ const UploadPost = () => {
     setImage(file); // Store the selected image file
   };
 
+  const checkMissingFields = (fields) =>{
+
+    const missing = Object.entries(fields)
+    .filter(([_, value]) => !value)
+    .map(([key]) => key);
+
+    return missing;
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!title || !description) {
-      showToastMessage("error", "Title and Description are required.");
+    const missingFields = checkMissingFields({title ,description, image});
+
+    if (missingFields?.length) {
+      showToastMessage("error", `Please fill ${missingFields.join(',')} fields`);
       return;
     }
 
+    if (loading) return; // stop multiple requests 
     setLoading(true)
 
     const formData = new FormData();
@@ -41,6 +53,7 @@ const UploadPost = () => {
       
       if (response.status === 201) {
         showToastMessage("success", "Post Created Successfully");
+        navigate('/')
       } else {
         showToastMessage("error", "Error Occur during create post");
       }
