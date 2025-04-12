@@ -78,7 +78,7 @@ const UploadPost = () => {
         <div className="flex flex-row items-center justify-between border-b pb-4 mb-6">
           <h2 className="text-2xl font-bold text-gray-800">Create New Post</h2>
 
-          <img  className=" text-red-500 text-2xl hover:text-red-700 " src="/cross.png" alt="" onClick={navigateHandle}/>
+          <img  className="h-9 w-9" src="/cross.png" alt="" onClick={navigateHandle}/>
         </div>
 
         <form

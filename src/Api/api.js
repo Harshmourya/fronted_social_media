@@ -23,14 +23,11 @@ export const loginUser = (credentials) => API.post("/student/login", credentials
 
 // Post APIs
 export const getPosts = () => API.get("/post/getPosts");
-
 export const getPostById = (id) => API.get(`/post/getPostbyMe`);
-
 export const createPost = (postData) =>
   API.post("/post/createPost", postData, {
     headers: { "Content-Type": "multipart/form-data" },
   });
-
 export const deletePost = (postId) => API.delete(`/post/deletePost/${postId}`);
 
 
@@ -39,9 +36,8 @@ export const addlike = (postId) => API.put('/post/addLike' , {postId});
 
 
 // Comment APIs
-export const getComments = (postId) => API.get(`/comment/${postId}`);
-
-export const createComment = (postId, commentData) => API.post(`/comment/${postId}`, commentData);
-
+export const getComments = (postId) => API.get(`/comment/getAllCommentbyPost/${postId}`);
+export const createComment = ({ postId, text }) =>
+  API.post(`/comment/addcomment`, { postId, text });
 // Conversations (if needed)
 export const getConversations = (userId) => API.get(`/conversations/${userId}`);

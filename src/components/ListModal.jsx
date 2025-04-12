@@ -1,36 +1,47 @@
-// src/components/LikesModal.jsx
-import React from "react";
 
 const ListModal = ({ likedBy = [], onClose }) => {
   return (
-    <div className="fixed inset-0  bg-opacity-40 backdrop-blur-xs flex justify-center items-center z-50">
-      <div className="bg-white/40 p-5 rounded-xl w-80 max-h-[400px] shadow-lg">
-        
-        {/* Header */}
-        <div className="flex items-center justify-between border-b pb-2 mb-3">
-          <h2 className="text-xl font-semibold text-gray-800">Liked By</h2>
-          <img
-            src="/cross.png"
-            alt="Close"
-            className="w-5 h-5 cursor-pointer"
-            onClick={onClose}
-          />
-        </div>
+    <>
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm">
+  <div className="bg-white border border-white/20 backdrop-blur-xl shadow-2xl rounded-2xl w-96 max-h-[450px] p-5 text-black relative overflow-hidden animate-fade-in">
 
-        {/* Scrollable List */}
-        <div className="space-y-2 overflow-y-auto max-h-[100px] scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-100 font-bold">
-          {likedBy.length === 0 ? (
-            <p className="text-gray-500 text-xs">No likes yet.</p>
-          ) : (
-            likedBy.map((user, idx) => (
-              <p key={idx} className="text-gray-700 text-xs ">
-                {user}
-              </p>
-            ))
-          )}
-        </div>
-      </div>
+    {/* Close Button */}
+    <button
+      onClick={onClose}
+      className="absolute top-3 right-3 p-1 rounded-full hover:bg-white/20 transition"
+    >
+      <img src="/cross.png" alt="Close" className="h-9 w-9 hover:cursor-pointer hover:bg-gray-200 p-1 rounded-full transition duration-200 ease-in-out" />
+    </button>
+
+    {/* Header */}
+    <h2 className="text-2xl font-bold mb-4 border-b border-white/20 pb-2">
+      ❤️ Liked By
+    </h2>
+
+    {/* Scrollable List */}
+    <div className="space-y-3 overflow-y-auto max-h-[250px] pr-1 py-2 scrollbar-thin scrollbar-thumb-white/40 scrollbar-track-transparent">
+      {likedBy.length === 0 ? (
+        <p className="text-black/70 text-sm">No likes yet.</p>
+      ) : (
+        likedBy.map((user, idx) => (
+          <div
+            key={idx}
+            className="flex items-center gap-3 bg-white/10 hover:bg-white/20 transition px-4 py-2 rounded-xl shadow-black/80 shadow-sm "
+          >
+            {/* Profile Initial Circle */}
+            <div className="bg-black/10 text-balck font-semibold w-9 h-9 flex items-center justify-center rounded-full uppercase">
+              {user.charAt(0)}
+            </div>
+            {/* Username */}
+            <p className="text-sm font-medium">{user}</p>
+          </div>
+        ))
+      )}
     </div>
+  </div>
+</div>
+
+    </>
   );
 };
 

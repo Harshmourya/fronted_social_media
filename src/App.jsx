@@ -12,6 +12,7 @@ import LoginWithOTP from "../src/pages/LoginWithOTP";
 import PrivateRoute from "./Routes/PrivateRoute";
 import UploadPost from "./pages/UploadPost";
 import Home from "./pages/Home";
+import Comment from "./components/Comment";
 
 function App() {
   const router = createBrowserRouter(
@@ -24,6 +25,7 @@ function App() {
         </Route>
 
         {/* Public Routes (Accessible to Everyone) */}
+        <Route path="/comment" element={<Comment />} />
         <Route path="signup" element={<Registration />} />
         <Route path="verify-otp" element={<LoginWithOTP />} />
         <Route path="login" element={<Login />} />

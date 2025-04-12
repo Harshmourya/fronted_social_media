@@ -22,7 +22,7 @@ const Home = () => {
   return (
     <>
     
-      <div className="p-4">
+      <div className="p-4 ">
         {posts.map((post) => (
           <PostCard key={post._id} post={post} />
         ))}
