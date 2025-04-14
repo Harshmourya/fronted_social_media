@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { ClockFading, Heart, MessageCircle } from "lucide-react";
+import { formatDistanceToNow } from 'date-fns';
+import { Heart, MessageCircle } from "lucide-react";
 import showToastMessage from "./ToastMessage";
 import { addlike } from "../Api/api";
 import ListModal from "./ListModal";
@@ -57,7 +58,7 @@ const PostCard = ({ post }) => {
         </div>
         <div className="ml-3">
           <p className="text-sm font-medium text-gray-800">{post.createdBy}</p>
-          <p className="text-xs text-gray-500">{new Date(post.createdAt).toLocaleDateString()}</p>
+          <p className="text-xs text-gray-500">{formatDistanceToNow(new Date(post.createdAt), {addSuffix: true})}</p>
         </div>
       </div>
       {/* Title */}
@@ -70,7 +71,7 @@ const PostCard = ({ post }) => {
       <img
         src={post.photoPost}
         alt={post.title}
-        className="w-full aspect-auto"
+        className="w-full aspect-auto -full h-auto object-cover rounded-lg max-h-[500px] "
       />
 
       {/* Interaction Buttons */}

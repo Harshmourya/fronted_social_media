@@ -10,9 +10,10 @@ import Login from "./pages/Login";
 import Registration from "./pages/Registration";
 import LoginWithOTP from "../src/pages/LoginWithOTP";
 import PrivateRoute from "./Routes/PrivateRoute";
-import UploadPost from "./pages/UploadPost";
 import Home from "./pages/Home";
 import Comment from "./components/Comment";
+import Profile from "./pages/Profile";
+import UploadPost from "./pages/UploadPost";
 
 function App() {
   const router = createBrowserRouter(
@@ -21,11 +22,11 @@ function App() {
 
         <Route element={<PrivateRoute />}>
           <Route path="" element={<Home />} />
+          <Route path="/profile" element={<Profile />} />
           <Route path="/createPost" element={<UploadPost />} />
         </Route>
 
         {/* Public Routes (Accessible to Everyone) */}
-        <Route path="/comment" element={<Comment />} />
         <Route path="signup" element={<Registration />} />
         <Route path="verify-otp" element={<LoginWithOTP />} />
         <Route path="login" element={<Login />} />

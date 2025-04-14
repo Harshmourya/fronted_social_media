@@ -57,7 +57,7 @@ const Login = () => {
     <>
       <div className="flex justify-center items-center min-h-screen bg-black p-6">
         <form
-          className="w-full max-w-md bg-white/10 backdrop-blur-md rounded-lg shadow-lg shadow-blue-500 p-6 space-y-5 border border-white/20"
+          className="w-full max-w-md bg-white/10 backdrop-blur-md rounded-lg shadow-lg shadow-violet-600 p-6 space-y-5 border border-white/20"
           onSubmit={handleLogin}
         >
           <h2 className="text-2xl font-semibold text-white text-center">
@@ -91,14 +91,14 @@ const Login = () => {
           <Button
             type="submit"
             loading={loading}
-            className="w-full bg-blue-600 p-3 rounded-lg font-semibold shadow-lg hover:scale-105 transition-transform duration-300 ease-in-out"
+            className="w-full bg-violet-600 p-3 rounded-lg font-semibold shadow-lg hover:scale-105 transition-transform duration-300 ease-in-out"
             text={loading? "Logging in" :"Login"}
           />
 
-          <div className="w-full flex justify-between text-lg text-white">
+          <div className="w-full flex justify-between text-md text-white">
             <Link
               to="/signup"
-              className="hover:underline hover:scale-110 focus:text-amber-300"
+              className="hover:underline hover:text-blue-400 hover:scale-110 focus:text-amber-300"
             >
             <p className="hover:underline hover:scale-110">
               Create New Account
@@ -106,7 +106,7 @@ const Login = () => {
             </Link>
             <Link
               to="/signup"
-              className="hover:underline hover:scale-110 focus:text-amber-300"
+              className="hover:underline hover:scale-110 hover:text-blue-400 focus:text-amber-300"
             >
               {" "}
               Sign Up

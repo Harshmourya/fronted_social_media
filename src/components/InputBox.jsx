@@ -1,6 +1,16 @@
-function InputBox({ placeholder , className , value , type='text' , required=false  , onChange ,accept , name } ) {
+function InputBox({ label , placeholder , className , value , type='text' , required=false  , onChange ,accept , name } ) {
     return (
         <>
+        <div className="flex flex-col gap-1 w-full">
+
+       {label && (
+           <label
+           htmlFor={name}
+           className="text-sm font-medium text-gray-300"
+           >
+          {label}
+        </label>
+      )}
             <input 
             type={type} 
             name={name} 
@@ -11,6 +21,7 @@ function InputBox({ placeholder , className , value , type='text' , required=fal
             className={className} 
             placeholder={placeholder} 
             />
+            </div>
         </>
     );
 }

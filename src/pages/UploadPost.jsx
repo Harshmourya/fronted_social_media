@@ -30,6 +30,8 @@ const UploadPost = () => {
     return missing;
   }
 
+  function navigateHandle (){navigate(-1)};
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -53,7 +55,7 @@ const UploadPost = () => {
       
       if (response.status === 201) {
         showToastMessage("success", "Post Created Successfully");
-        navigate('/')
+        navigateHandle();
       } else {
         showToastMessage("error", "Error Occur during create post");
       }
@@ -69,7 +71,6 @@ const UploadPost = () => {
     }
   };
 
-  const navigateHandle = () => navigate("/");
 
   return (
     <div className=" fixed inset-0 flex items-center justify-center bg-opacity-50 backdrop-blur-md z-50">
@@ -78,7 +79,9 @@ const UploadPost = () => {
         <div className="flex flex-row items-center justify-between border-b pb-4 mb-6">
           <h2 className="text-2xl font-bold text-gray-800">Create New Post</h2>
 
-          <img  className="h-9 w-9" src="/cross.png" alt="" onClick={navigateHandle}/>
+<Button onclick={navigateHandle}>
+          <img  className="h-9 w-9" src="/cross.png" alt="" />
+</Button>
         </div>
 
         <form

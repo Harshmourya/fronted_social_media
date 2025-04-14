@@ -4,6 +4,7 @@ import showToastMessage from "../components/ToastMessage";
 import { registerUser } from "../Api/api";
 import InputBox from "../components/InputBox";
 import Button from "../components/Button";
+import UserForm from "../components/UserForm";
 
 const Register = () => {
   const [loading ,setLoading] = useState(false);
@@ -70,15 +71,12 @@ const Register = () => {
   };
   return (
     <div className="flex justify-center items-center min-h-screen bg-black p-6">
-      <form
+      {/* <form
         className="w-full max-w-lg bg-white/10 backdrop-blur-md rounded-lg shadow-lg shadow-blue-600 p-6 space-y-5 border border-white/20"
         onSubmit={handleRegister}
       >
-        <h2 className="text-2xl font-semibold text-white text-center">
-          Register
-        </h2>
+        
 
-        {/* First & Last Name */}
         <div className="flex gap-4">
           <InputBox
             type="text"
@@ -98,7 +96,6 @@ const Register = () => {
           />
         </div>
 
-        {/* Username */}
         <input
           type="text"
           name="username"
@@ -108,7 +105,6 @@ const Register = () => {
           required
         />
 
-        {/* Email & Password */}
         <div className="flex gap-4">
           <InputBox
             type="email"
@@ -128,7 +124,6 @@ const Register = () => {
           />
         </div>
 
-        {/* Phone */}
         <InputBox
           type="text"
           name="phone"
@@ -137,7 +132,6 @@ const Register = () => {
           onChange={handleChange}
         />
 
-        {/* Address */}
         <InputBox
           type="text"
           name="address"
@@ -146,7 +140,6 @@ const Register = () => {
           onChange={handleChange}
         />
 
-        {/* Register Button */}
         <Button
           loading={loading}
           type="submit"
@@ -168,7 +161,18 @@ const Register = () => {
             Sign In
           </Link>
         </div>
-      </form>
+      </form> */}
+
+<UserForm
+  formData={formData}
+  onChange={handleChange}
+  onSubmit={handleRegister}
+  showLoginLink={true}
+  heading="Registor"
+  buttonText="Register"
+/>
+
+
     </div>
   );
 };

@@ -41,7 +41,7 @@ const OTPVerification = () => {
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-black p-6">
-      <div className="w-full max-w-md bg-white/10 backdrop-blur-md rounded-lg shadow-lg shadow-blue-500 p-6 space-y-5 border border-white/20 flex flex-col items-center">
+      <div className="w-full max-w-md bg-white/10 backdrop-blur-md rounded-lg shadow-lg shadow-violet-600 p-6 space-y-5 border border-white/20 flex flex-col items-center">
         <h2 className="text-2xl font-semibold text-white">OTP Verification</h2>
 
         <InputBox
@@ -65,7 +65,7 @@ const OTPVerification = () => {
         <Button
           loading={loading}
           onclick={handleVerify}
-          className="w-full bg-blue-500 text-white p-3 rounded-lg font-semibold shadow-lg hover:scale-105 transition-transform duration-300 ease-in-out"
+          className="w-full bg-violet-600 text-white p-3 rounded-lg font-semibold shadow-lg hover:scale-105 transition-transform duration-300 ease-in-out"
           text={loading ? "Verifing otp": "Verify OTP"}
         />
       </div>
