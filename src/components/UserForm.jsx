@@ -3,7 +3,7 @@ import Button from "./Button";
 import { Link } from "react-router-dom"; // Optional: Only if you're using React Router
 
 const inputCss =
-  "w-full p-3 bg-[#1e1e1e] border border-white/20 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-teal-400 focus:outline-none transition-all duration-200 ease-in-out";
+  "w-full p-3 bg-[#1e1e1e] border border-white/20 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-teal-400 hover:scale-105 focus:outline-none ";
 
 function UserForm({
   formData,
