@@ -104,8 +104,8 @@ const UploadPost = () => {
               htmlFor="fileUpload"
               className="
               flex flex-col items-center justify-center gap-3 w-full cursor-pointer
-              border-2 border-dashed border-violet-300 py-6 rounded-xl text-violet-600
-              hover:border-violet-400 hover:bg-violet-50 transition
+              border-2 border-dashed border-violet-300 py-6 rounded-xl text-violet-600 
+              hover:border-violet-400 hover:bg-violet-300 transition
             "
             >
               <img

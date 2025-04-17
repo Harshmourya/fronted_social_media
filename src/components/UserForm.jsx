@@ -18,8 +18,19 @@ function UserForm({
   return (
     <form
       onSubmit={onSubmit}
-      className={`w-full max-w-xl text-white backdrop-blur-lg bg-black rounded-xl shadow-lg border border-white/10 p-8 space-y-6 ${ onClose ? '' : 'shadow-violet-600'}`}
-    >
+      className={`w-full 
+        max-w-xs sm:max-w-md md:max-w-lg lg:max-w-xl 
+        text-white 
+        backdrop-blur-lg 
+        bg-black 
+        rounded-xl 
+        shadow-lg 
+        border border-white/10 
+        p-4 sm:p-6 lg:p-8 
+        space-y-4 sm:space-y-5 lg:space-y-6 
+        ${onClose ? '' : 'ring-2 ring-violet-600/50'}
+      `}
+      >
       <div className={`flex items-center ${onClose ? 'justify-between' : 'justify-center'}`}>
 
       <h2 className="text-2xl font-semibold text-white text-center">

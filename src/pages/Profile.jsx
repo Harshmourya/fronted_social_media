@@ -4,7 +4,6 @@ import PostCard from "../components/PostCard";
 import { getPostById, userProfile } from "../Api/api";
 import { motion, AnimatePresence } from "framer-motion";
 import EditProfile from "../components/EditProfile";
-import UploadPost from "./UploadPost";
 import { useNavigate } from "react-router-dom";
 
 function Profile() {
