@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "https://social-media-xrhj.onrender.com",
+  baseURL: "http://34.133.240.60/",
   headers: { "Content-Type": "application/json" },
 
 });
