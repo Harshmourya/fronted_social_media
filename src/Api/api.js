@@ -1,14 +1,14 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "http://localhost:3000",
+  baseURL: "https://social-media-xrhj.onrender.com",
   headers: { "Content-Type": "application/json" },
-  
+
 });
 
 API.interceptors.request.use((config) => {
   const token = localStorage.getItem("token");
-  if(token){
+  if (token) {
     config.headers.Authorization = `Bearer ${token}`;
   }
   return config;
@@ -26,17 +26,17 @@ export const createPost = (postData) =>
   API.post("/post/createPost", postData, {
     headers: { "Content-Type": "multipart/form-data" },
   });
-  export const deletePost = (postId) => API.delete(`/post/deletePost/${postId}`);
-  
-  
-  // Like API
-  export const addlike = (postId) => API.put('/post/addLike' , {postId});
-  
-  //Pofile APIs
-  export const userProfile = () => API.get("/student/getMyProfile");
-  export const updateProfile = (userData) => API.put("/student/updateProfile" , userData , {
-    headers: { "Content-Type": "multipart/form-data" },
-  });
+export const deletePost = (postId) => API.delete(`/post/deletePost/${postId}`);
+
+
+// Like API
+export const addlike = (postId) => API.put('/post/addLike', { postId });
+
+//Pofile APIs
+export const userProfile = () => API.get("/student/getMyProfile");
+export const updateProfile = (userData) => API.put("/student/updateProfile", userData, {
+  headers: { "Content-Type": "multipart/form-data" },
+});
 
 
 // Comment APIs
