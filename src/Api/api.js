@@ -3,7 +3,6 @@ import axios from "axios";
 const API = axios.create({
   baseURL: "http://localhost:3000/",
   headers: { "Content-Type": "application/json" },
-
 });
 
 API.interceptors.request.use((config) => {
@@ -28,7 +27,6 @@ export const createPost = (postData) =>
   });
 export const deletePost = (postId) => API.delete(`/post/deletePost/${postId}`);
 
-
 // Like API
 export const addlike = (postId) => API.put('/post/addLike', { postId });
 
@@ -38,11 +36,14 @@ export const updateProfile = (userData) => API.put("/student/updateProfile", use
   headers: { "Content-Type": "multipart/form-data" },
 });
 
-
 // Comment APIs
 export const getComments = (postId) => API.get(`/comment/getAllCommentbyPost/${postId}`);
 export const createComment = ({ postId, text }) =>
   API.post(`/comment/addcomment`, { postId, text });
+
+// Follow API
+export const followTo = (username) => API.put('/student/follow', { username });
+// export const followTo = (username) => API.put("/student/follow" , {username});
 
 // Conversations (if needed)
 export const getConversations = (userId) => API.get(`/conversations/${userId}`);

@@ -44,9 +44,9 @@ function EditProfile({ user, onClose, fetchProfile }) {
           onChange={handleChange}
           onSubmit={postUpdateProfile}
           onClose={onClose}
-          showPhotoUpload={true}
+          showField={true}
           buttonText="Save"
-          heading="Settings"
+          heading="Update Profile"
         />
       </div>
     </>

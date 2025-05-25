@@ -3,9 +3,11 @@ const ListModal = ({ likedBy = [], onClose }) => {
   return (
     <>
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm">
+    
   <div className="bg-white border border-white/20 backdrop-blur-xl shadow-2xl rounded-2xl w-96 max-h-[450px] p-5 text-black relative overflow-hidden animate-fade-in">
 
     {/* Close Button */}
+    
     <button
       onClick={onClose}
       className="absolute top-3 right-3 p-1 rounded-full hover:bg-white/20 transition"

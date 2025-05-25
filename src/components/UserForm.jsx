@@ -12,7 +12,7 @@ function UserForm({
   onClose,
   buttonText = "Submit",
   heading,
-  showPhotoUpload = false,
+  showField = false,
   showLoginLink = false,
 }) {
   return (
@@ -28,20 +28,29 @@ function UserForm({
         border border-white/10 
         p-4 sm:p-6 lg:p-8 
         space-y-4 sm:space-y-5 lg:space-y-6 
-        ${onClose ? '' : 'ring-2 ring-violet-600/50'}
+        ${onClose ? "" : "ring-2 ring-violet-600/50"}
       `}
+    >
+      <div
+        className={`flex items-center ${
+          onClose ? "justify-between" : "justify-center"
+        }`}
       >
-      <div className={`flex items-center ${onClose ? 'justify-between' : 'justify-center'}`}>
-
-      <h2 className="text-2xl font-semibold text-white text-center">
-        {heading}
-      </h2>
-      {onClose&& <img src="/cross.png" alt="" onClick={onClose}  className="w-9 h-9 hover:cursor-pointer hover:bg-white/40 p-1 rounded-full transition duration-200 ease-in-out"/>
-      }
+        <h2 className="text-2xl font-semibold text-white text-center">
+          {heading}
+        </h2>
+        {onClose && (
+          <img
+            src="/cross.png"
+            alt=""
+            onClick={onClose}
+            className="w-9 h-9 hover:cursor-pointer hover:bg-white/40 p-1 rounded-full transition duration-200 ease-in-out"
+          />
+        )}
       </div>
 
       {/* 👤 Photo Upload - Only for settings */}
-      {showPhotoUpload && (
+      {showField && (
         <div className="flex flex-col gap-2">
           <label htmlFor="photo" className="text-sm font-medium text-gray-300">
             Upload Profile Photo
@@ -107,28 +116,30 @@ function UserForm({
       </div>
 
       {/* 📧 Email & Password */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-        <InputBox
-          type="email"
-          name="email"
-          value={formData.email}
-          placeholder="Email"
-          label="Email"
-          className={inputCss}
-          onChange={onChange}
-          required
-        />
-        <InputBox
-          type="password"
-          name="password"
-          value={formData.password}
-          placeholder="Password"
-          label="Password"
-          className={inputCss}
-          onChange={onChange}
-          required
-        />
-      </div>
+      {!showField && (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+          <InputBox
+            type="email"
+            name="email"
+            value={formData.email}
+            placeholder="Email"
+            label="Email"
+            className={inputCss}
+            onChange={onChange}
+            required
+          />
+          <InputBox
+            type="password"
+            name="password"
+            value={formData.password}
+            placeholder="Password"
+            label="Password"
+            className={inputCss}
+            onChange={onChange}
+            required
+          />
+        </div>
+      )}
 
       {/* 🏠 Address */}
       <InputBox

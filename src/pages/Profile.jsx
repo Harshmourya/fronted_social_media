@@ -5,27 +5,19 @@ import { getPostById, userProfile } from "../Api/api";
 import { motion, AnimatePresence } from "framer-motion";
 import EditProfile from "../components/EditProfile";
 import { useNavigate } from "react-router-dom";
+import { useUser } from "../Context/ContextApi";
 
 function Profile() {
   const navigate = useNavigate();
   const [userPosts, setUserPost] = useState([]);
-  const [user, setUser] = useState(null);
+  const {user , fetchProfile} = useUser();
   const [activeTab, setActiveTab] = useState("posts"); // "posts" or "edit"
 
-  const fetchProfile = async () => {
-    try {
-      const res = await userProfile();
-      setUser(res.data.msg[0]);
-    } catch (error) {
-      showToastMessage("error", error.message || "Something went wrong");
-    }
-  };
 
   const postByUser = async () => {
     try {
       const res = await getPostById(user);
       setUserPost(res.data);
-      console.log(res.data[0]);
     } catch (error) {
       showToastMessage("error", error);
       console.log(error);

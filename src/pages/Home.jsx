@@ -3,9 +3,10 @@ import PostCard from "../components/PostCard";
 import { getPosts } from "../Api/api";
 import showToastMessage from "../components/ToastMessage";
 import CreatePostButton from "../components/CreatePostButton";
+import { useUser } from "../Context/ContextApi";
 
 const Home = () => {
-  const [posts, setPost] = useState([]);
+  const {posts, setPost} = useUser();
 
   useEffect(() => {
     const getAllPosts = async () => {

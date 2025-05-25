@@ -167,7 +167,6 @@ const Register = () => {
   formData={formData}
   onChange={handleChange}
   onSubmit={handleRegister}
-  showLoginLink={true}
   heading="Registor"
   buttonText="Register"
 />
